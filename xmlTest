@@ -1,0 +1,72 @@
+import tkinter as tk
+from tkinter import ttk
+from xml.etree import ElementTree as ET
+from tkinter import *
+
+
+# XML dosyasından verileri çekme
+def load_data():
+    tree = ET.parse('data.xml')
+    root = tree.getroot()
+    return root
+
+# Tüm verileri görüntüleme
+def show_all():
+    root = load_data()
+    for child in root:
+        print(child.tag, child.attrib)
+
+# Butonlara basıldığında fonksiyonları çağırma
+def on_click_button1():
+    # Buton1 için gereken kodlar
+    pass
+
+def sonraki():
+    global kapak
+    if kapak < len(kapaklar)-1:
+        kapak +=1
+    else:
+        kapak = 0
+    print(kapak)
+    goster()
+
+# XML dosyasından verileri çekme
+def show_all():
+    root = load_data()
+    for child in root:
+        print("Albüm İsmi: ", child.find('dcName').text)
+        print("Sanatçı Adı: ", child.find('dcSinger').text)
+        print("Kapak Resmi: ", child.find('dcAlbumCover').text)
+        print("Yayın Yılı: ", child.find('dcPublicationYear').text)
+        print("İçindekiler: ", child.find('dcContent').text)
+        print("Dil:", child.find('dcLanguage').text)
+        print("")
+
+# Butonlara basıldığında fonksiyonları çağırma
+def on_click_button1():
+    # Buton1 için gereken kodlar
+    pass
+
+def on_click_button2():
+    # Buton2 için gereken kodlar
+    pass
+
+def on_click_button2():
+    # Buton2 için gereken kodlar
+    pass
+
+# Ana pencere oluşturma
+root = tk.Tk()
+root.title("Albümler")
+
+# Butonları oluşturma
+button1 = ttk.Button(root, text="Albüm kapakları", command=on_click_button1)
+button1.pack()
+
+
+button3 = ttk.Button(root, text="Tüm Albümleri Görüntüle", command=show_all)
+button3.pack()
+
+# Uygulamayı çalıştırma
+root.mainloop()
+
